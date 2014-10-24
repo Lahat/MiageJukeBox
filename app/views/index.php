@@ -76,6 +76,11 @@
 				Hello
 			</div>
 		</div>
+		<div class="saved-playlist col-xs-3">
+			<div class="wrapper">
+				Hello
+			</div>
+		</div>
 	</div>
 
 

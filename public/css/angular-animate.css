@@ -1,0 +1,28 @@
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    
+    display: block;
+    width: 100%;
+/*     box-shadow: 0 0 100em white; */
+    
+    position: absolute;
+/*     top: 0; */
+    left: 0;
+    right: 0;
+/*     bottom: 0; */
+    /*   padding:10px; */
+}
+
+.view-animate.ng-enter {
+    left: 100%;
+    opacity: 1;
+}
+.view-animate.ng-enter.ng-enter-active {
+    left: 0;
+    opacity: 1;
+}
+.view-animate.ng-leave.ng-leave-active {
+    opacity: 0;
+}

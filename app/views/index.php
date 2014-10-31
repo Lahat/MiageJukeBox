@@ -5,8 +5,9 @@
 	<title>Laravel PHP Framework</title>
 	<link rel="stylesheet" type="text/css" href="css/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/angular-animate.css">
 </head>
-<body>
+<body ng-app='JukeBox'>
 	
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
@@ -24,8 +25,18 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Bibliothèque</a></li>
-					<li><a href="#">Ma musique</a></li>
+					<li>
+						<a href="#/catalogue">
+							<span class="glyphicon glyphicon-globe"></span>
+							Bibliothèque
+						</a>
+					</li>
+					<li>
+						<a href="#/my">
+							<span class="glyphicon glyphicon-music"></span>
+							Ma musique
+						</a>
+					</li>
 					
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
@@ -35,15 +46,22 @@
 					<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte<span class="caret"></span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span>
+							Mon compte
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a >Action</a></li>
+							<li><a >Another action</a></li>
+							<li><a >Something else here</a></li>
 							<li class="divider"></li>
-							<li ><a href="#" style="color:red">Se déconnecter</a></li>
+							<li ><a style="color:red">
+									Se déconnecter
+									<span class="glyphicon glyphicon-remove-circle"></span>
+								</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -52,35 +70,8 @@
 	</nav>
 
 	
-	<div ng-view class="main-container col-xs-12">
-		<div class="saved-playlist col-xs-3">
-			<div class="wrapper">
-				Hello
-			</div>
-		</div>
-		<div class="saved-playlist col-xs-3">
-			<div class="wrapper">
-				<h3>Hello</h3>
-				<hr>
-				Créée le xx/xx/xx
-				<hr>
-			</div>
-		</div>
-		<div class="saved-playlist col-xs-3">
-			<div class="wrapper">
-				Hello
-			</div>
-		</div>
-		<div class="saved-playlist col-xs-3">
-			<div class="wrapper">
-				Hello
-			</div>
-		</div>
-		<div class="saved-playlist col-xs-3">
-			<div class="wrapper">
-				Hello
-			</div>
-		</div>
+	<div ng-view class="main-container view-animate row-fluid">
+		
 	</div>
 
 
@@ -99,16 +90,20 @@
 
 
 
-
-
-
-
-
-
-	<!-- Zone des js -->
+	<!-- Zone des js vendors -->
 	<script type="text/javascript" src="js/vendors/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/vendors/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/vendors/angular.min.js"></script>
+	<script type="text/javascript" src="js/vendors/angular.js"></script>
+	<script type="text/javascript" src="js/vendors/angular-route.js"></script>
+	<script type="text/javascript" src="js/vendors/angular-animate.js"></script>
+
+	
+
+
+	<!--Zone des js perso-->
+	<script type="text/javascript" src="js/JukeBox.js"></script>
+	<script type="text/javascript" src="js/ma-bibliotheque/ma-bibliotheque.js"></script>
+	<script type="text/javascript" src="js/catalogue/catalogue.js"></script>
 	
 </body>
 </html>

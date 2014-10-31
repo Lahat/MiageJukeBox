@@ -10,7 +10,11 @@ body{
 	position: relative;
 	height: 100%;
 	width:101.5%;
+	overflow:hidden;
+}
 
+a {
+	cursor: pointer;
 }
 
 /* Surcharge bootstrap  */

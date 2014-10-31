@@ -1,7 +1,8 @@
 <style type="text/css">
 	.morceau{
 		border-bottom: 1px gray solid;
-		min-height: 3em
+		min-height: 3em;
+		/*max-height:3em;*/
 	}
 	.morceau:hover  .button{
 		visibility: visible;
@@ -9,28 +10,43 @@
 	.morceau .button {
 		cursor:pointer;
 		visibility: hidden;
-		font-size: 1.3em
+	}
+
+	.morceau .detail {
+		margin-right: 0;
+		padding-right: 0;
+
+	}
+	.morceau .detail-right{
+		text-align: right;
 	}
 
 </style>
 <div class="morceau row" >
-	<div class="col-xs-1">
+	<div class="col-xs-1 ">
 		<span class="button glyphicon glyphicon-play-circle" ></span>
 		<span class="button glyphicon glyphicon-circle-arrow-down"></span>
 	</div>
-	<div class="col-xs-11">
-		<div class="row col-xs-12">
-			[[morceau.titre]]
-			<span style="float:right">[[morceau.duree]] s.</span>
+	<div class="detail col-xs-10 ">
+		<div class="row">
+			<div class="col-xs-9">
+				[[morceau.titre]]				
+			</div>
+			<div class="col-xs-3 detail-right">
+				[[morceau.duree]] s
+			</div>
 		</div>
 		
-		<div class="row col-xs-12">
-			<span class="glyphicon glyphicon-user"></span>
-			&nbsp;[[morceau.artiste]]
-			<span style="float:right">
+		<div class="row">
+			<div class="col-xs-6">
+				<span class="glyphicon glyphicon-user"></span>
+				&nbsp;[[morceau.artiste]]				
+			</div>
+			<div class="col-xs-6 detail-right" >
 				<span class="glyphicon glyphicon-headphones"></span>
 				&nbsp;[[morceau.album]]				
-			</span>
+			</div>
+			
 		</div>
 	</div>
 </div>

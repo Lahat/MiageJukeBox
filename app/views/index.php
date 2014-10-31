@@ -92,6 +92,7 @@
 
 	<!-- Zone des js vendors -->
 	<script type="text/javascript" src="js/vendors/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/vendors/underscore.js"></script>
 	<script type="text/javascript" src="js/vendors/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/vendors/angular.js"></script>
 	<script type="text/javascript" src="js/vendors/angular-route.js"></script>

@@ -62,6 +62,7 @@ a {
 .saved-playlist .wrapper{
 	background-color: rgba(255,255,255,0.75);
 	overflow-y: scroll;
+	overflow-x: hidden;
 	margin:  0.5em 0;
 	padding: 0  0.5em 0 0.5em;
 

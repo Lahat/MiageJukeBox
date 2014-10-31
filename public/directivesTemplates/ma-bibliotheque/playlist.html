@@ -1,5 +1,24 @@
 <div class="saved-playlist col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 col-lg-3">
 	<div class="wrapper">
-		Hello
+		<div style="font-size: 2.5em; white-space: nowrap; border-bottom: 1px whitesmoke solid">
+			[[playlist.nom]]
+		</div>
+		<div style="border-bottom: 1px whitesmoke solid">
+			
+			<span>
+				<span class="glyphicon glyphicon-th-list" style="font-size:1.1em"></span>
+				[[playlist.morceaux.length == 0 ? 'Vide' : playlist.morceaux.length + ' éléments']]
+			</span>
+			<span style="float:right">
+				<span class="glyphicon glyphicon-time"></span>
+				[[dureePlaylist(playlist.id) ]] s.
+			</span>
+			<span>[[playlist.createdAt | date ]]</span>
+		</div>
+
+
+		<morceau ng-repeat="morceau in playlist.morceaux"></morceau>
+
+
 	</div>
 </div>

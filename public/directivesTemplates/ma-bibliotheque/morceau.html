@@ -1,0 +1,36 @@
+<style type="text/css">
+	.morceau{
+		border-bottom: 1px gray solid;
+		min-height: 3em
+	}
+	.morceau:hover  .button{
+		visibility: visible;
+	}
+	.morceau .button {
+		cursor:pointer;
+		visibility: hidden;
+		font-size: 1.3em
+	}
+
+</style>
+<div class="morceau row" >
+	<div class="col-xs-1">
+		<span class="button glyphicon glyphicon-play-circle" ></span>
+		<span class="button glyphicon glyphicon-circle-arrow-down"></span>
+	</div>
+	<div class="col-xs-11">
+		<div class="row col-xs-12">
+			[[morceau.titre]]
+			<span style="float:right">[[morceau.duree]] s.</span>
+		</div>
+		
+		<div class="row col-xs-12">
+			<span class="glyphicon glyphicon-user"></span>
+			&nbsp;[[morceau.artiste]]
+			<span style="float:right">
+				<span class="glyphicon glyphicon-headphones"></span>
+				&nbsp;[[morceau.album]]				
+			</span>
+		</div>
+	</div>
+</div>

@@ -15,3 +15,11 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
+
+
+Route::get('/user', function($id)
+{
+
+	echo $id;
+	return View::make('user' );
+});

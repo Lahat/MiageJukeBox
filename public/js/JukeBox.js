@@ -12,12 +12,12 @@
 		$routeProvider
 			.when ('/my',{ 
 					templateUrl: 'public/templates/ma-bibliotheque.ng-view.html',
-					controller: 'maBibliothequeMainController'
+					controller: 'MaBibliothequeMainController'
 				}
 			)
 			.when ('/catalogue',{ 
 					templateUrl: 'public/templates/catalogue.ng-view.html',
-					controller: 'catalogueMainController'
+					controller: 'CatalogueMainController'
 				}
 			)
 			.otherwise({

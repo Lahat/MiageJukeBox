@@ -107,8 +107,8 @@
 
 	<!--Zone des js perso-->
 	<script type="text/javascript" src="public/js/JukeBox.js"></script>
-	<script type="text/javascript" src="public/js/ma-bibliotheque/ma-bibliotheque.js"></script>
-	<script type="text/javascript" src="public/js/catalogue/catalogue.js"></script>
+	<script type="text/javascript" src="public/js/ma-bibliotheque/MaBibliotheque.js"></script>
+	<script type="text/javascript" src="public/js/catalogue/Catalogue.js"></script>
 	
 </body>
 </html>

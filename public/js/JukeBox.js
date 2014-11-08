@@ -11,17 +11,17 @@
 	JukeBox.config ([ '$routeProvider', function($routeProvider){
 		$routeProvider
 			.when ('/my',{ 
-					templateUrl: 'templates/ma-bibliotheque.ng-view.html',
+					templateUrl: 'public/templates/ma-bibliotheque.ng-view.html',
 					controller: 'maBibliothequeMainController'
 				}
 			)
 			.when ('/catalogue',{ 
-					templateUrl: 'templates/catalogue.ng-view.html',
+					templateUrl: 'public/templates/catalogue.ng-view.html',
 					controller: 'catalogueMainController'
 				}
 			)
 			.otherwise({
-				redirectTo: '/catalogue'
+				redirectTo: '/my'
 			});
 		}]);
 	

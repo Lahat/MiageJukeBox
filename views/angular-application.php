@@ -1,11 +1,15 @@
 <!doctype html>
 <html lang="fr">
+
+
+<!-- Voici l'application angular, elle consiste en un simple template html incluant le JS et CSS nécessaire. -->
+
 <head>
 	<meta charset="UTF-8">
 	<title>Laravel PHP Framework</title>
-	<link rel="stylesheet" type="text/css" href="css/vendors/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="css/angular-animate.css">
+	<link rel="stylesheet" type="text/css" href="public/css/vendors/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/index.css">
+	<link rel="stylesheet" type="text/css" href="public/css/angular-animate.css">
 </head>
 <body ng-app='JukeBox'>
 	
@@ -91,20 +95,20 @@
 
 
 	<!-- Zone des js vendors -->
-	<script type="text/javascript" src="js/vendors/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="js/vendors/underscore.js"></script>
-	<script type="text/javascript" src="js/vendors/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/vendors/angular.js"></script>
-	<script type="text/javascript" src="js/vendors/angular-route.js"></script>
-	<script type="text/javascript" src="js/vendors/angular-animate.js"></script>
+	<script type="text/javascript" src="public/js/vendors/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="public/js/vendors/underscore.js"></script>
+	<script type="text/javascript" src="public/js/vendors/bootstrap.min.js"></script>
+	<script type="text/javascript" src="public/js/vendors/angular.js"></script>
+	<script type="text/javascript" src="public/js/vendors/angular-route.js"></script>
+	<script type="text/javascript" src="public/js/vendors/angular-animate.js"></script>
 
 	
 
 
 	<!--Zone des js perso-->
-	<script type="text/javascript" src="js/JukeBox.js"></script>
-	<script type="text/javascript" src="js/ma-bibliotheque/ma-bibliotheque.js"></script>
-	<script type="text/javascript" src="js/catalogue/catalogue.js"></script>
+	<script type="text/javascript" src="public/js/JukeBox.js"></script>
+	<script type="text/javascript" src="public/js/ma-bibliotheque/ma-bibliotheque.js"></script>
+	<script type="text/javascript" src="public/js/catalogue/catalogue.js"></script>
 	
 </body>
 </html>

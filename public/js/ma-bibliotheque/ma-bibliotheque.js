@@ -30,12 +30,12 @@
 							album : 'Album '+ morceauId
 						});
 						morceauId++;
-					};
+					}
 
 
 
 					$scope.playlists.push(playlistDemo);
-				};
+				}
 			};
 
 			generateTestData();
@@ -49,7 +49,7 @@
 				if (playlist) {
 					for (var i = 0; i < playlist.morceaux.length; i++) {
 						duree += playlist.morceaux[i].duree;
-					};
+					}
 				}
 				return duree;
 			};
@@ -69,16 +69,19 @@
 
 
 	JukeBoxDirectives.directive('playlist', function(){
-		return {
-			restrict : 'E',
-			templateUrl: "directivesTemplates/ma-bibliotheque/playlist.html"
-		};
+
+
+        return {
+            restrict: 'E',
+            templateUrl: "public/directivesTemplates/ma-bibliotheque/playlist.html"
+        };
+
 	});
 
 	JukeBoxDirectives.directive('morceau', function(){
-		return {
-			restrict : 'E',
-			templateUrl: "directivesTemplates/ma-bibliotheque/morceau.html"
-		};
+        return {
+            restrict: 'E',
+            templateUrl: "public/directivesTemplates/ma-bibliotheque/morceau.html"
+        };
 	});
 })();

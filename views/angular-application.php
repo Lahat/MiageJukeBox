@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="fr">
 
-
 <!-- Voici l'application angular, elle consiste en un simple template html incluant le JS et CSS nécessaire. -->
+
 
 <head>
 	<meta charset="UTF-8">
-	<title>Laravel PHP Framework</title>
+	<title>JukeBox</title>
 	<link rel="stylesheet" type="text/css" href="public/css/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="public/css/index.css">
 	<link rel="stylesheet" type="text/css" href="public/css/angular-animate.css">

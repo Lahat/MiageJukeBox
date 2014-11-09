@@ -21,10 +21,15 @@
 		text-align: right;
 	}
 
+    .morceau .artist-name:hover{
+        cursor: pointer;
+        color: #285e8e;
+    }
+
 </style>
 <div class="morceau row" >
 	<div class="col-xs-1 ">
-		<span class="button glyphicon glyphicon-play-circle" ></span>
+		<span class="button glyphicon glyphicon-play-circle" ng-click="vm.play(morceau.track_id)"></span>
 		<span class="button glyphicon glyphicon-circle-arrow-down"></span>
 	</div>
 	<div class="detail col-xs-10 ">
@@ -35,13 +40,9 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-12 artist-name">
 				<span class="glyphicon glyphicon-user"></span>
-				&nbsp;[[morceau.artist_id]]
-			</div>
-			<div class="col-xs-6 detail-right" >
-				<span class="glyphicon glyphicon-headphones"></span>
-				&nbsp;[["album"]]
+				&nbsp;[[morceau.artist.name]]
 			</div>
 			
 		</div>

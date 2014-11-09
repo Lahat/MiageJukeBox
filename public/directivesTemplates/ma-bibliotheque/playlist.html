@@ -4,16 +4,18 @@
 		<div style="font-size: 2.5em; white-space: nowrap; border-bottom: 1px whitesmoke solid">
 			[[playlist.name]]
 		</div>
-		<div style="border-bottom: 1px whitesmoke solid">
+        <div style="border-bottom: 1px whitesmoke solid">
 			<span>
 				<span class="glyphicon glyphicon-th-list" style="font-size:1.1em"></span>
-				[[playlist.morceaux.length == 0 ? 'Vide' : vm.playlist.morceaux.length + ' éléments']]
+				[[playlist.morceaux.length == 0 ? 'Vide' : playlist.morceaux.length + ' éléments']]
 			</span>
-			<span>[[playlist.createdAt | date ]]</span>
 		</div>
+        <div style="border-bottom: 1px whitesmoke solid">
+			<input type="text" style="width: 100%" placeholder="Filtrer les éléments" ng-model="filterPlaylist">
+        </div>
 
 
-		<morceau ng-repeat="morceau in playlist.morceaux"></morceau>
+		<morceau ng-repeat="morceau in playlist.morceaux | filter:filterPlaylist"></morceau>
 
 
 	</div>

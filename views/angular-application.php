@@ -102,13 +102,21 @@
 	<script type="text/javascript" src="public/js/vendors/angular-route.js"></script>
 	<script type="text/javascript" src="public/js/vendors/angular-animate.js"></script>
 
-	
 
 
-	<!--Zone des js perso-->
-	<script type="text/javascript" src="public/js/JukeBox.js"></script>
+
+    <!--Zone des données de test-->
+
+    <script type="text/javascript" src="public/js/Database/DataStore.js"></script>
+    <script type="text/javascript" src="public/js/Database/DatabaseEmulator.js"></script>
+
+    <!--Zone des js perso-->
+    <script type="text/javascript" src="public/js/JukeBox.js"></script>
 	<script type="text/javascript" src="public/js/ma-bibliotheque/MaBibliotheque.js"></script>
 	<script type="text/javascript" src="public/js/catalogue/Catalogue.js"></script>
+
+
+
 	
 </body>
 </html>

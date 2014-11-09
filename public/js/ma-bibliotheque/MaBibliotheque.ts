@@ -3,20 +3,17 @@
  */
 
 /// <reference path="../headers/JukeBox.d.ts" />
+/// <reference path="../headers/Data.d.ts" />
 
 module MaBibliotheque{
 
 
-    export interface IMorceau{
-        id: number;
-        name: string;
-        duree: number;
-    }
+
 
     export interface IPlaylist{
         id: number;
         name: String;
-        morceaux : Array<IMorceau>;
+        morceaux : Array<DataStore.ITrack>;
     }
 
 
@@ -24,6 +21,8 @@ module MaBibliotheque{
 
         // angular
         private $scope:ng.IScope;
+
+        private model : DataStore.DataModel;
 
 
         //membres
@@ -35,37 +34,19 @@ module MaBibliotheque{
             this.$scope = $scope;
             this.playlists = new Array<IPlaylist>();
 
-            var morceauID : number = 0;
+            this.model = new DataStore.DataModel();
 
-            _(5).times((i:number)=>{
-                var playlistDemo: IPlaylist = {
-                    id: i,
-                    name: "Playlist"+i,
-                    album: "Album"+i,
-                    morceaux:[]
+            this.model.getTracks((tracks : Array<DataStore.ITrack>)=>{
+
+                var playlistDemo : IPlaylist = {
+                    id : 1,
+                    name: "Playlist demo",
+                    morceaux : tracks
                 };
 
-                var nbMorceaux : number = Math.floor(Math.random()*20);
-
-                _(nbMorceaux).times((j)=>{
-
-                    var morceauDemo: IMorceau = {
-                        id: morceauID,
-                        name: "Morceau démo "+morceauID,
-                        duree : Math.floor(Math.random()*1000),
-                        artiste: 'Artiste '+ morceauID,
-                        album : 'Album '+ morceauID
-                    };
-
-                    morceauID++;
-                    playlistDemo.morceaux.push(morceauDemo);
-                });
-
                 this.playlists.push(playlistDemo);
+                this.$scope.$apply();
             });
-
-
-
 
         }
 
@@ -80,8 +61,8 @@ module MaBibliotheque{
 
             var duree : number = 0;
             if (playlist) {
-                _.forEach(playlist.morceaux, (morceau:IMorceau)=>{
-                    duree += morceau.duree;
+                _.forEach(playlist.morceaux, (morceau:DataStore.ITrack)=>{
+                    //duree += morceau.duree;
                 });
             }
             return duree;

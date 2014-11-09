@@ -8,10 +8,10 @@ module Catalogue{
 
     export class CatalogueMainController {
 
-            // Scope angular
+        // Scope angular
         private $scope : ng.IScope;
 
-            // Membres
+        // Membres
 
         private artistes = [];
         private titres = [];
@@ -19,7 +19,7 @@ module Catalogue{
         private albums = [];
 
 
-            // Constructeur
+        // Constructeur
         constructor($scope: ng.IScope, $window: ng.IWindowService){
             this.$scope = $scope;
         }

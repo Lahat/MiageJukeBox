@@ -11,6 +11,9 @@
 		cursor:pointer;
 		visibility: hidden;
 	}
+    .morceau .button:hover{
+        text-shadow: 0 0 1em white;
+    }
 
 	.morceau .detail {
 		margin-right: 0;
@@ -30,7 +33,7 @@
 <div class="morceau row" >
 	<div class="col-xs-1 ">
 		<span class="button glyphicon glyphicon-play-circle" ng-click="vm.play(morceau.track_id)"></span>
-		<span class="button glyphicon glyphicon-circle-arrow-down"></span>
+		<span class="button glyphicon glyphicon-circle-arrow-down" ng-click="vm.enQueue(morceau.track_id)"></span>
 	</div>
 	<div class="detail col-xs-10 ">
 		<div class="row">

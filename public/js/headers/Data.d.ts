@@ -16,6 +16,7 @@ interface ITrack{
 
 interface IJoinedTrack extends ITrack{
     artist : IArtist;
+    position?: number;
 }
 
 interface IPlaylist{
@@ -37,3 +38,4 @@ interface IHTML5Audio{
     duration : number;
     played : TimeRanges;
 }
+

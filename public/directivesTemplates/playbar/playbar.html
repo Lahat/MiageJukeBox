@@ -1,0 +1,63 @@
+<style type="text/css">
+    #playbar {
+        background-color: rgba(0,0,0,0.75);
+        color: white;
+    }
+    #playbar .controls-left{
+        border-right : 1px whitesmoke solid;
+    }
+    #playbar .controls-right{
+        border-left : 1px whitesmoke solid;
+    }
+    #playbar .controls .button{
+        font-size: 2.6em;
+        cursor : pointer;
+    }
+
+    #playbar .controls .button.disabled{
+        cursor: auto;
+        color: gray;
+    }
+    #playbar .controls .button:hover{
+        text-shadow: 0 0 1em lightblue;
+    }
+    #playbar .controls .button.disabled:hover{
+        text-shadow: none;
+    }
+    #playbar .controls .button-md{
+        font-size: 1.3em;
+    }
+    #playbar .controls .button-right{
+        float:right;
+    }
+    #playbar .tracksContainer{
+        max-height: 3.1em;
+        overflow-x: hidden;
+    }
+</style>
+<nav id="playbar" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+        <div class="controls row ">
+            <div class="controls-left col-xs-1">
+                <span class="button button-md glyphicon glyphicon-backward" ng-click="vm.playPrevious()"
+                        ng-class="vm.hasPrevious() ? '' : 'disabled'"></span>
+                <span class="button glyphicon "
+                      ng-class="vm.isPlaying() ? 'glyphicon-pause':'glyphicon-play-circle'"
+                      ng-click="vm.playPause()"></span>
+                <span class="button button-md glyphicon glyphicon-forward" ng-click="vm.playNext()"
+                      ng-class="vm.hasNext() ? '' : 'disabled'"
+                        ></span>
+            </div>
+            <div class="tracksContainer col-xs-10">
+                <playable-track
+                        ng-repeat="track in vm.getCurrentPlaylist() track by $index"
+                        ng-click="vm.playAlreadyQueuedTrack(track)"
+
+                ></playable-track>
+            </div>
+            <div class="controls-right col-xs-1">
+                <span class="button button-right glyphicon glyphicon-save"></span>
+            </div>
+        </div>
+    </div>
+</nav>

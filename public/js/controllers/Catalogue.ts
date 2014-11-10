@@ -26,6 +26,6 @@ module Catalogue{
     }
 }
 
-JukeBoxControllers.controller('CatalogueMainController', ['$scope', '$window', function($scope, $window){
+window.JukeBox.controller('CatalogueMainController', ['$scope', '$window', function($scope, $window){
     $scope.vm = new Catalogue.CatalogueMainController($scope, $window);
 }]);

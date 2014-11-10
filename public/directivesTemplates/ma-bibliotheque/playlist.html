@@ -15,7 +15,7 @@
         </div>
 
 
-		<morceau ng-repeat="morceau in playlist.morceaux | filter:filterPlaylist"></morceau>
+		<morceau ng-repeat="morceau in playlist.morceaux track by $index | filter:filterPlaylist"></morceau>
 
 
 	</div>

@@ -80,11 +80,7 @@
 
 
 
-	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-		<div class="container-fluid">
-			Liste de lecture en cours
-		</div>
-	</nav>
+    <play-bar ng-controller="PlayBar"></play-bar>
 
 
 
@@ -112,8 +108,9 @@
 
     <!--Zone des js perso-->
     <script type="text/javascript" src="public/js/JukeBox.js"></script>
-	<script type="text/javascript" src="public/js/ma-bibliotheque/MaBibliotheque.js"></script>
-	<script type="text/javascript" src="public/js/catalogue/Catalogue.js"></script>
+	<script type="text/javascript" src="public/js/controllers/MaBibliotheque.js"></script>
+	<script type="text/javascript" src="public/js/controllers/Catalogue.js"></script>
+    <script type="text/javascript" src="public/js/controllers/PlayBar.js"></script>
 
 
 

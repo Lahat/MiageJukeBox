@@ -1,0 +1,50 @@
+<style type="text/css">
+    .playableTrack{
+        display:inline-block;
+        width: 9em;
+        background-color: rgba(255,255,255,0.85);
+        color: black;
+        height: 3.4em;
+        cursor: pointer;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .playableTrack:hover {
+        box-shadow: 0 0 1em white;
+    }
+
+    .playableTrack.playing {
+        animation: playingAnimation ease 2s infinite;
+        -webkit-animation: playingAnimation ease 2s infinite;
+
+    }
+
+    @keyframes playingAnimation {
+        0% {
+            box-shadow: none;
+        }
+        50%{
+            box-shadow: 0 0 2em white;
+        }
+        100%{
+            box-shadow: none;
+        }
+    }
+    @-webkit-keyframes playingAnimation {
+        0% {
+            box-shadow: none;
+        }
+        50%{
+            box-shadow: 0 0 2em white;
+        }
+        100%{
+            box-shadow: none;
+        }
+    }
+</style>
+<div class="playableTrack"
+     ng-class=" vm.getCurrentlyPlaying() == track ? 'playing' : '' ">
+    <b>[[track.title]]</b>
+    [[track.artist.name]]
+</div>

@@ -19,7 +19,7 @@ var Catalogue;
     Catalogue.CatalogueMainController = CatalogueMainController;
 })(Catalogue || (Catalogue = {}));
 
-JukeBoxControllers.controller('CatalogueMainController', [
+window.JukeBox.controller('CatalogueMainController', [
     '$scope', '$window', function ($scope, $window) {
         $scope.vm = new Catalogue.CatalogueMainController($scope, $window);
     }]);

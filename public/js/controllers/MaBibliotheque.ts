@@ -14,6 +14,7 @@ module MaBibliotheque{
         // angular
         private $scope:ng.IScope;
 
+        private JukeBoxBridge : IJukeBoxBridge;
         private model : IDataModel;
 
 
@@ -23,13 +24,13 @@ module MaBibliotheque{
 
         private tracks : {[index:number] : IJoinedTrack};
 
-        // dynamics
 
-        private currentlyPlaying : IHTML5Audio;
 
         // construct
-        constructor($scope:ng.IScope, $window:ng.IWindowService) {
+        constructor($scope:ng.IScope, JukeBoxBridge : IJukeBoxBridge) {
             this.$scope = $scope;
+
+            this.JukeBoxBridge = JukeBoxBridge;
             this.playlists = new Array<IPlaylist>();
 
             this.model = new DatabaseEmulator();
@@ -49,45 +50,36 @@ module MaBibliotheque{
 
                 this.playlists.push(playlistDemo);
                 this.$scope.$apply();
-                console.log(this.playlists);
             });
-
         }
 
 
         public getPlaylists(): Array<IPlaylist>{
-            console.log(this.playlists);
             return this.playlists;
         }
 
-        /**
-         * TODO déplacer dans le controler de la barre d'en bas
-         * @param track_id Numero de la piste
-         */
+
         public play(track_id:number){
             var track : IJoinedTrack = this.tracks[track_id];
-            console.log("Lecture de  "+track.artist.name + " : " + track.title);
-            if (track) {
-                if(this.currentlyPlaying){
-                    this.currentlyPlaying.pause();
-                }
-                this.currentlyPlaying = new Audio(track.mp3_url);
-                this.currentlyPlaying.play();
-            }
+            //console.log("Lecture de "+track.artist.name + " : " + track.title);
+            this.JukeBoxBridge.play(track);
+        }
+
+        public enQueue(track_id:number){
+            var track : IJoinedTrack = this.tracks[track_id];
+            this.JukeBoxBridge.enQueue(track);
         }
 
     } // end class
 }// end module
 
 
-JukeBoxControllers.controller('MaBibliothequeMainController', ['$scope', '$window', ($scope, $window)=>{
-    $scope.vm = new MaBibliotheque.MaBibliothequeMainController($scope, $window);
+window.JukeBox.controller('MaBibliothequeMainController', ['$scope',  'JukeBoxBridge', ($scope, JukeBoxBridge)=>{
+    $scope.vm = new MaBibliotheque.MaBibliothequeMainController($scope, JukeBoxBridge);
 }]);
 
 
-JukeBoxDirectives.directive('playlist', function(){
-
-
+window.JukeBox.directive('playlist', function(){
     return {
         restrict: 'E',
         templateUrl: "public/directivesTemplates/ma-bibliotheque/playlist.html"
@@ -95,7 +87,7 @@ JukeBoxDirectives.directive('playlist', function(){
 
 });
 
-JukeBoxDirectives.directive('morceau', function(){
+window.JukeBox.directive('morceau', function(){
     return {
         restrict: 'E',
         templateUrl: "public/directivesTemplates/ma-bibliotheque/morceau.html"

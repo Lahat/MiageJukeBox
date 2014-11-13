@@ -7,75 +7,77 @@
 
 declare var DatabaseEmulator;
 
-module MaBibliotheque{
+class MaBibliothequeController {
 
-    export class MaBibliothequeMainController {
+    // angular
+    private $scope:ng.IScope;
 
-        // angular
-        private $scope:ng.IScope;
-
-        private JukeBoxBridge : IJukeBoxBridge;
-        private model : IDataModel;
+    private JukeBoxBridge : IJukeBoxBridge;
+    private model : IDataModel;
 
 
-        //collections
+    //collections
 
-        private playlists:Array<IPlaylist>;
+    private playlists:Array<IPlaylist>;
 
-        private tracks : {[index:number] : IJoinedTrack};
+    private tracks : {[index:number] : IJoinedTrack};
 
 
 
-        // construct
-        constructor($scope:ng.IScope, JukeBoxBridge : IJukeBoxBridge) {
-            this.$scope = $scope;
+    // construct
+    constructor($scope:ng.IScope, JukeBoxBridge : IJukeBoxBridge) {
+        this.$scope = $scope;
 
-            this.JukeBoxBridge = JukeBoxBridge;
-            this.playlists = new Array<IPlaylist>();
+        this.JukeBoxBridge = JukeBoxBridge;
+        this.playlists = new Array<IPlaylist>();
 
-            this.model = new DatabaseEmulator();
+        this.model = new DatabaseEmulator();
 
-            this.model.getTracks((tracks : Array<IJoinedTrack>)=>{
+        this.model.getTracks((tracks : Array<IJoinedTrack>)=>{
 
-                this.tracks = _.indexBy(tracks, (track:IJoinedTrack)=>{
-                    return track.track_id;
-                });
-
-
-                var playlistDemo : IPlaylist = {
-                    id : 1,
-                    name: "Playlist demo",
-                    morceaux : tracks
-                };
-
-                this.playlists.push(playlistDemo);
-                this.$scope.$apply();
+            this.tracks = _.indexBy(tracks, (track:IJoinedTrack)=>{
+                return track.track_id;
             });
-        }
 
 
-        public getPlaylists(): Array<IPlaylist>{
-            return this.playlists;
-        }
+            var playlistDemo : IPlaylist = {
+                id : 1,
+                name: "Playlist demo",
+                morceaux : tracks
+            };
+
+            this.playlists.push(playlistDemo);
+            this.forceRefresh();
+        });
+    }
 
 
-        public play(track_id:number){
-            var track : IJoinedTrack = this.tracks[track_id];
-            //console.log("Lecture de "+track.artist.name + " : " + track.title);
-            this.JukeBoxBridge.play(track);
-        }
-
-        public enQueue(track_id:number){
-            var track : IJoinedTrack = this.tracks[track_id];
-            this.JukeBoxBridge.enQueue(track);
-        }
-
-    } // end class
-}// end module
+    public getPlaylists(): Array<IPlaylist>{
+        return this.playlists;
+    }
 
 
-window.JukeBox.controller('MaBibliothequeMainController', ['$scope',  'JukeBoxBridge', ($scope, JukeBoxBridge)=>{
-    $scope.vm = new MaBibliotheque.MaBibliothequeMainController($scope, JukeBoxBridge);
+    public play(track_id:number){
+        var track : IJoinedTrack = this.tracks[track_id];
+        this.JukeBoxBridge.play(track);
+    }
+
+    public enQueue(track_id:number){
+        var track : IJoinedTrack = this.tracks[track_id];
+        this.JukeBoxBridge.enQueue(track);
+    }
+
+    private forceRefresh(){
+        if(!this.$scope.$$phase)
+            this.$scope.$apply();
+    }
+
+} // end class
+
+
+
+window.JukeBox.controller('MaBibliothequeController', ['$scope',  'JukeBoxBridge', ($scope, JukeBoxBridge)=>{
+    $scope.vm = new MaBibliothequeController($scope, JukeBoxBridge);
 }]);
 
 
@@ -84,7 +86,6 @@ window.JukeBox.directive('playlist', function(){
         restrict: 'E',
         templateUrl: "public/directivesTemplates/ma-bibliotheque/playlist.html"
     };
-
 });
 
 window.JukeBox.directive('morceau', function(){

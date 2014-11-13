@@ -14,17 +14,22 @@ declare var window : Window;
 	JukeBox.config ([ '$routeProvider', function($routeProvider){
 		$routeProvider
 			.when ('/my',{ 
-					templateUrl: 'public/templates/ma-bibliotheque.ng-view.html',
-					controller: 'MaBibliothequeMainController'
+					templateUrl: 'public/templates/my.ng-view.html',
+					controller: 'MaBibliothequeController'
 				}
 			)
-			.when ('/catalogue',{ 
-					templateUrl: 'public/templates/catalogue.ng-view.html',
-					controller: 'CatalogueMainController'
+			.when ('/all',{
+					templateUrl: 'public/templates/all.ng-view.html',
+					controller: 'AllController'
 				}
 			)
+            .when ('/artists',{
+                templateUrl: 'public/templates/artists.ng-view.html',
+                controller: 'ArtistsController'
+            }
+        )
 			.otherwise({
-				redirectTo: '/my'
+				redirectTo: '/all'
 			});
 		}]);
 

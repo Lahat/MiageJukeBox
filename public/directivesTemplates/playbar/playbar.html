@@ -38,9 +38,11 @@
 <nav id="playbar" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="container-fluid">
         <div class="controls row ">
-            <div class="controls-left col-xs-1">
-                <span class="button button-md glyphicon glyphicon-backward" ng-click="vm.playPrevious()"
-                        ng-class="vm.hasPrevious() ? '' : 'disabled'"></span>
+
+
+            <div class="controlsContainer col-xs-11">
+                 <span class="button button-md glyphicon glyphicon-backward" ng-click="vm.playPrevious()"
+                       ng-class="vm.hasPrevious() ? '' : 'disabled'"></span>
                 <span class="button glyphicon "
                       ng-class="vm.isPlaying() ? 'glyphicon-pause':'glyphicon-play-circle'"
                       ng-click="vm.playPause()"></span>
@@ -48,15 +50,19 @@
                       ng-class="vm.hasNext() ? '' : 'disabled'"
                         ></span>
             </div>
-            <div class="tracksContainer col-xs-10">
+            <div class="controls-right col-xs-1">
+                <span class="button button-right glyphicon glyphicon-save"></span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="controls row ">
+
+            <div class="tracksContainer col-xs-12">
                 <playable-track
                         ng-repeat="track in vm.getCurrentPlaylist() track by $index"
                         ng-click="vm.playAlreadyQueuedTrack(track)"
-
-                ></playable-track>
-            </div>
-            <div class="controls-right col-xs-1">
-                <span class="button button-right glyphicon glyphicon-save"></span>
+                        ></playable-track>
             </div>
         </div>
     </div>

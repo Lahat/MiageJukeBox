@@ -11,13 +11,16 @@
     JukeBox.config([
         '$routeProvider', function ($routeProvider) {
             $routeProvider.when('/my', {
-                templateUrl: 'public/templates/ma-bibliotheque.ng-view.html',
-                controller: 'MaBibliothequeMainController'
-            }).when('/catalogue', {
-                templateUrl: 'public/templates/catalogue.ng-view.html',
-                controller: 'CatalogueMainController'
+                templateUrl: 'public/templates/my.ng-view.html',
+                controller: 'MaBibliothequeController'
+            }).when('/all', {
+                templateUrl: 'public/templates/all.ng-view.html',
+                controller: 'AllController'
+            }).when('/artists', {
+                templateUrl: 'public/templates/artists.ng-view.html',
+                controller: 'ArtistsController'
             }).otherwise({
-                redirectTo: '/my'
+                redirectTo: '/all'
             });
         }]);
 
@@ -37,7 +40,7 @@
     JukeBox.factory('JukeBoxBridge', [
         '$rootScope', function ($rootScope) {
             var currentPlayList = [];
-            var lastAction = IJukeBoxBridgeLastAction.NONE;
+            var lastAction = 2 /* NONE */;
 
             var bridge = {
                 getCurrentPlaylist: function () {
@@ -45,11 +48,11 @@
                 },
                 enQueue: function (track) {
                     currentPlayList.push(track);
-                    lastAction = IJukeBoxBridgeLastAction.QUEUED;
+                    lastAction = 1 /* QUEUED */;
                 },
                 play: function (track) {
                     currentPlayList.unshift(track);
-                    lastAction = IJukeBoxBridgeLastAction.PLAYED;
+                    lastAction = 0 /* PLAYED */;
                 },
                 getLastAction: function () {
                     return lastAction;

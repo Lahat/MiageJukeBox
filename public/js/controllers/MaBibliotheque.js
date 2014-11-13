@@ -4,57 +4,56 @@
 /// <reference path="../headers/JukeBox.d.ts" />
 /// <reference path="../headers/Data.d.ts" />
 
-var MaBibliotheque;
-(function (MaBibliotheque) {
-    var MaBibliothequeMainController = (function () {
-        // construct
-        function MaBibliothequeMainController($scope, JukeBoxBridge) {
-            var _this = this;
-            this.$scope = $scope;
+var MaBibliothequeController = (function () {
+    // construct
+    function MaBibliothequeController($scope, JukeBoxBridge) {
+        var _this = this;
+        this.$scope = $scope;
 
-            this.JukeBoxBridge = JukeBoxBridge;
-            this.playlists = new Array();
+        this.JukeBoxBridge = JukeBoxBridge;
+        this.playlists = new Array();
 
-            this.model = new DatabaseEmulator();
+        this.model = new DatabaseEmulator();
 
-            this.model.getTracks(function (tracks) {
-                _this.tracks = _.indexBy(tracks, function (track) {
-                    return track.track_id;
-                });
-
-                var playlistDemo = {
-                    id: 1,
-                    name: "Playlist demo",
-                    morceaux: tracks
-                };
-
-                _this.playlists.push(playlistDemo);
-                _this.$scope.$apply();
+        this.model.getTracks(function (tracks) {
+            _this.tracks = _.indexBy(tracks, function (track) {
+                return track.track_id;
             });
-        }
-        MaBibliothequeMainController.prototype.getPlaylists = function () {
-            return this.playlists;
-        };
 
-        MaBibliothequeMainController.prototype.play = function (track_id) {
-            var track = this.tracks[track_id];
+            var playlistDemo = {
+                id: 1,
+                name: "Playlist demo",
+                morceaux: tracks
+            };
 
-            //console.log("Lecture de "+track.artist.name + " : " + track.title);
-            this.JukeBoxBridge.play(track);
-        };
+            _this.playlists.push(playlistDemo);
+            _this.forceRefresh();
+        });
+    }
+    MaBibliothequeController.prototype.getPlaylists = function () {
+        return this.playlists;
+    };
 
-        MaBibliothequeMainController.prototype.enQueue = function (track_id) {
-            var track = this.tracks[track_id];
-            this.JukeBoxBridge.enQueue(track);
-        };
-        return MaBibliothequeMainController;
-    })();
-    MaBibliotheque.MaBibliothequeMainController = MaBibliothequeMainController;
-})(MaBibliotheque || (MaBibliotheque = {}));
+    MaBibliothequeController.prototype.play = function (track_id) {
+        var track = this.tracks[track_id];
+        this.JukeBoxBridge.play(track);
+    };
 
-window.JukeBox.controller('MaBibliothequeMainController', [
+    MaBibliothequeController.prototype.enQueue = function (track_id) {
+        var track = this.tracks[track_id];
+        this.JukeBoxBridge.enQueue(track);
+    };
+
+    MaBibliothequeController.prototype.forceRefresh = function () {
+        if (!this.$scope.$$phase)
+            this.$scope.$apply();
+    };
+    return MaBibliothequeController;
+})();
+
+window.JukeBox.controller('MaBibliothequeController', [
     '$scope', 'JukeBoxBridge', function ($scope, JukeBoxBridge) {
-        $scope.vm = new MaBibliotheque.MaBibliothequeMainController($scope, JukeBoxBridge);
+        $scope.vm = new MaBibliothequeController($scope, JukeBoxBridge);
     }]);
 
 window.JukeBox.directive('playlist', function () {

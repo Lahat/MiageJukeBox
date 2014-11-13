@@ -15,7 +15,7 @@ class PlayBar {
     private JukeBoxBridge : IJukeBoxBridge;
 
 
-    private currentlyPlaying : IHTML5Audio;
+    private currentlyPlaying : HTMLAudioElement;
     private currentlyPlayingTrack: IJoinedTrack;
 
     private currentPlaylist : Array<IJoinedTrack>;
@@ -46,7 +46,7 @@ class PlayBar {
         }
     }
 
-    getCurrentPlaylist(){
+    public getCurrentPlaylist(){
         this.currentPlaylist =this.JukeBoxBridge.getCurrentPlaylist();
         return this.currentPlaylist;
     }
@@ -54,14 +54,20 @@ class PlayBar {
     private playTrack(track: IJoinedTrack){
         if(this.currentlyPlaying){
             this.currentlyPlaying.pause();
+            this.currentlyPlaying.onended = null;
         }
         console.log("Playing: "+ track.title );
         this.currentlyPlaying = new Audio(track.mp3_url);
         this.currentlyPlayingTrack = track;
         this.currentlyPlaying.play();
+
+
+        this.currentlyPlaying.onended = ()=>{
+            this.playNext();
+        };
     }
 
-    isPlaying(){
+    public isPlaying(){
         var isPlaying : boolean = false;
         if(this.currentlyPlaying){
             isPlaying = !this.currentlyPlaying.paused
@@ -69,7 +75,7 @@ class PlayBar {
         return isPlaying;
     }
 
-    playPause(){
+    public playPause(){
         if(this.isPlaying()){
             this.currentlyPlaying.pause();
         }
@@ -78,11 +84,11 @@ class PlayBar {
         }
     }
 
-    playAlreadyQueuedTrack(track: IJoinedTrack){
+    public playAlreadyQueuedTrack(track: IJoinedTrack){
         this.playTrack(track);
     }
 
-    playNext(){
+    public playNext(){
         if(this.hasNext()){
             var index =  this.currentlyPlayingTrack.position;
             var next : IJoinedTrack = this.currentPlaylist[index+1];
@@ -92,7 +98,7 @@ class PlayBar {
         }
     }
 
-    playPrevious(){
+    public playPrevious(){
         if(this.hasPrevious()){
             var index =  this.currentlyPlayingTrack.position;
             var next : IJoinedTrack = this.currentPlaylist[index-1];
@@ -102,11 +108,11 @@ class PlayBar {
         }
     }
 
-    getCurrentlyPlaying() : IJoinedTrack{
+    public getCurrentlyPlaying() : IJoinedTrack{
         return this.currentlyPlayingTrack;
     }
 
-    hasNext(){
+    public hasNext(){
         var ret :boolean = false;
         if(this.currentlyPlayingTrack){
             var index =  this.currentlyPlayingTrack.position;
@@ -114,7 +120,7 @@ class PlayBar {
         }
         return ret;
     }
-    hasPrevious(){
+    public hasPrevious(){
         var ret :boolean = false;
         if(this.currentlyPlayingTrack){
             var index = this.currentlyPlayingTrack.position;

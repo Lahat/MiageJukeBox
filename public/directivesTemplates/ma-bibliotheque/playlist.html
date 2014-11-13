@@ -9,13 +9,11 @@
 				<span class="glyphicon glyphicon-th-list" style="font-size:1.1em"></span>
 				[[playlist.morceaux.length == 0 ? 'Vide' : playlist.morceaux.length + ' éléments']]
 			</span>
-		</div>
-        <div style="border-bottom: 1px whitesmoke solid">
-			<input type="text" style="width: 100%" placeholder="Filtrer les éléments" ng-model="filterPlaylist">
         </div>
 
 
-		<morceau ng-repeat="morceau in playlist.morceaux track by $index | filter:filterPlaylist"></morceau>
+
+		<morceau ng-repeat="morceau in playlist.morceaux | filter:globalFilter  track by $index"></morceau>
 
 
 	</div>

@@ -38,13 +38,19 @@ var PlayBar = (function () {
     };
 
     PlayBar.prototype.playTrack = function (track) {
+        var _this = this;
         if (this.currentlyPlaying) {
             this.currentlyPlaying.pause();
+            this.currentlyPlaying.onended = null;
         }
         console.log("Playing: " + track.title);
         this.currentlyPlaying = new Audio(track.mp3_url);
         this.currentlyPlayingTrack = track;
         this.currentlyPlaying.play();
+
+        this.currentlyPlaying.onended = function () {
+            _this.playNext();
+        };
     };
 
     PlayBar.prototype.isPlaying = function () {

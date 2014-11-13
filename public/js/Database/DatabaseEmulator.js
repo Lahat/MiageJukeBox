@@ -9,10 +9,11 @@ var DatabaseEmulator = (function () {
     }
     DatabaseEmulator.prototype.getTracks = function (callback) {
         var _this = this;
-        this.model.getTracks(function (tracks) {
-            _this.model.getArtists(function (artists) {
-                var artistsGrouped;
+        var inCache = window.sessionStorage.getItem('tracks') !== null;
 
+        var next = function (tracks) {
+            _this.getArtists(function (artists) {
+                var artistsGrouped;
                 artistsGrouped = _.indexBy(artists, function (artiste) {
                     return artiste.artist_id;
                 });
@@ -23,7 +24,33 @@ var DatabaseEmulator = (function () {
 
                 callback(tracks);
             });
-        });
+        };
+
+        if (!inCache) {
+            this.model.getTracks(function (tracks) {
+                window.sessionStorage.setItem('tracks', JSON.stringify(tracks));
+                next(tracks);
+            });
+        } else {
+            var tracks = JSON.parse(window.sessionStorage.getItem('tracks'));
+            next(tracks);
+        }
+    };
+
+    DatabaseEmulator.prototype.getArtists = function (callback) {
+        var inCache = window.sessionStorage.getItem('artists') !== null;
+
+        var artists;
+
+        if (!inCache) {
+            this.model.getArtists(function (artists) {
+                window.sessionStorage.setItem('artists', JSON.stringify(artists));
+                callback(artists);
+            });
+        } else {
+            artists = JSON.parse(window.sessionStorage.getItem('artists'));
+            callback(artists);
+        }
     };
     return DatabaseEmulator;
 })();

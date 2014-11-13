@@ -30,14 +30,21 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="#/catalogue">
-							<span class="glyphicon glyphicon-globe"></span>
-							Bibliothèque
+						<a href="#/artists">
+							<span class="glyphicon glyphicon-user"></span>
+							Artistes
 						</a>
 					</li>
+                    <li>
+                        <a href="#/all">
+                            <span class="glyphicon glyphicon-music"></span>
+                            Tous les morceaux
+                        </a>
+                    </li>
 					<li>
 						<a href="#/my">
-							<span class="glyphicon glyphicon-music"></span>
+
+							<span class=" glyphicon glyphicon-paperclip"></span>
 							Ma musique
 						</a>
 					</li>
@@ -45,21 +52,19 @@
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Filtrer les éléments">
+						<input type="text" class="form-control" placeholder="Trouver partout" ng-model="globalFilter">
 					</div>
 					<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown">
-							<span class="glyphicon glyphicon-user"></span>
-							Mon compte
+							<span class="glyphicon glyphicon-cog"></span>
+							Options
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a >Action</a></li>
-							<li><a >Another action</a></li>
-							<li><a >Something else here</a></li>
+							<li><a >Mon profil</a></li>
 							<li class="divider"></li>
 							<li ><a style="color:red">
 									Se déconnecter
@@ -109,7 +114,7 @@
     <!--Zone des js perso-->
     <script type="text/javascript" src="public/js/JukeBox.js"></script>
 	<script type="text/javascript" src="public/js/controllers/MaBibliotheque.js"></script>
-	<script type="text/javascript" src="public/js/controllers/Catalogue.js"></script>
+	<script type="text/javascript" src="public/js/controllers/All.js"></script>
     <script type="text/javascript" src="public/js/controllers/PlayBar.js"></script>
 
 

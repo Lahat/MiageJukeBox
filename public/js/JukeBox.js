@@ -39,8 +39,11 @@
 
     JukeBox.factory('JukeBoxBridge', [
         '$rootScope', function ($rootScope) {
+            var tracks;
             var currentPlayList = [];
             var lastAction = 2 /* NONE */;
+
+            var currentArtist = null;
 
             var bridge = {
                 getCurrentPlaylist: function () {
@@ -56,6 +59,12 @@
                 },
                 getLastAction: function () {
                     return lastAction;
+                },
+                showArtistInfo: function (artist) {
+                    currentArtist = artist;
+                },
+                getCurrentArtist: function () {
+                    return currentArtist;
                 }
             };
             return bridge;

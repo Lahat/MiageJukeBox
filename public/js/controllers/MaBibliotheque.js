@@ -8,6 +8,7 @@ var MaBibliothequeController = (function () {
     // construct
     function MaBibliothequeController($scope, JukeBoxBridge) {
         var _this = this;
+        this.artistModalId = "#artist-modal";
         this.$scope = $scope;
 
         this.JukeBoxBridge = JukeBoxBridge;
@@ -34,13 +35,16 @@ var MaBibliothequeController = (function () {
         return this.playlists;
     };
 
-    MaBibliothequeController.prototype.play = function (track_id) {
-        var track = this.tracks[track_id];
+    MaBibliothequeController.prototype.artistInfo = function (track) {
+        this.JukeBoxBridge.showArtistInfo(track.artist);
+        $(this.artistModalId).modal('show');
+    };
+
+    MaBibliothequeController.prototype.play = function (track) {
         this.JukeBoxBridge.play(track);
     };
 
-    MaBibliothequeController.prototype.enQueue = function (track_id) {
-        var track = this.tracks[track_id];
+    MaBibliothequeController.prototype.enQueue = function (track) {
         this.JukeBoxBridge.enQueue(track);
     };
 

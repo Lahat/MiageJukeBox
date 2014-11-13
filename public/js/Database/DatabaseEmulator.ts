@@ -18,24 +18,35 @@ class DatabaseEmulator
         var inCache : boolean = window.sessionStorage.getItem('tracks') !== null;
 
         var next:Function = (tracks: Array<ITrack>)=>{
-            this.getArtists((artists: Array<IArtist>)=>{
-                var artistsGrouped : {[index:number]:IArtist};
-                artistsGrouped =  _.indexBy(artists, (artiste :IArtist)=>{
+            this.model.getArtists((artists: Array<IJoindedArtist>)=>{
+                var artistsGrouped : {[index:number]:IJoindedArtist};
+                artistsGrouped =  _.indexBy(artists, (artiste :IJoindedArtist)=>{
                     return artiste.artist_id;
                 });
 
+                var groupedTracks : {[index:number]: Array<ITrack>};
+                groupedTracks = _.groupBy(tracks, (track: ITrack)=>{
+                    return track.artist_id;
+                });
 
                 _.each(tracks, (track : IJoinedTrack)=>{
                     track.artist = artistsGrouped[track.artist_id];
+                    track.artist.morceaux = [];
+                    _.each(groupedTracks[track.artist.artist_id], (trackToCopy: IJoinedTrack)=>{
+                        var copy : IJoinedTrack = _.clone(trackToCopy);
+                        copy.artist = null;
+                        track.artist.morceaux.push(copy);
+                    });
+
                 });
 
+                window.sessionStorage.setItem('tracks', JSON.stringify(tracks));
                 callback(tracks);
             });
         }
 
         if(!inCache){
             this.model.getTracks((tracks : Array<ITrack>)=>{
-                window.sessionStorage.setItem('tracks', JSON.stringify(tracks));
                 next(tracks);
             });
         }
@@ -51,10 +62,24 @@ class DatabaseEmulator
 
         var artists : Array<IArtist>;
 
-        if(!inCache){
-            this.model.getArtists((artists : Array<IArtist>)=>{
+        var next : Function = (artists : Array<IArtist>)=>{
+            this.model.getTracks((tracks: Array<ITrack>)=>{
+                var groupedTracks : {[index:number]: Array<ITrack>};
+                groupedTracks = _.groupBy(tracks, (track: ITrack)=>{
+                    return track.artist_id;
+                });
+
+                _.each(artists, (artist: IJoindedArtist)=>{
+                    artist.morceaux = groupedTracks[artist.artist_id];
+                });
                 window.sessionStorage.setItem('artists', JSON.stringify(artists));
                 callback(artists);
+            });
+        };
+
+        if(!inCache){
+            this.model.getArtists((artists : Array<IArtist>)=>{
+                next(artists);
             });
         }else{
             artists = JSON.parse(window.sessionStorage.getItem('artists'));

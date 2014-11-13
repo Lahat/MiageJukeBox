@@ -50,8 +50,11 @@ declare var window : Window;
 
     JukeBox.factory('JukeBoxBridge', ['$rootScope', function($rootScope){
 
+        var tracks: Array<IJoinedTrack>;
         var currentPlayList : Array<IJoinedTrack> = [];
         var lastAction : IJukeBoxBridgeLastAction = IJukeBoxBridgeLastAction.NONE;
+
+        var currentArtist : IJoindedArtist = null;
 
         var bridge : IJukeBoxBridge = {
             getCurrentPlaylist : function():Array<IJoinedTrack>{
@@ -67,6 +70,12 @@ declare var window : Window;
             },
             getLastAction : function() : IJukeBoxBridgeLastAction{
                 return lastAction;
+            },
+            showArtistInfo: function(artist: IJoindedArtist):void{
+                currentArtist = artist;
+            },
+            getCurrentArtist: function(): IJoindedArtist{
+                return currentArtist;
             }
         };
         return bridge;

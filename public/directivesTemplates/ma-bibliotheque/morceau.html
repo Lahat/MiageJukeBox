@@ -4,6 +4,9 @@
 		min-height: 3em;
 		/*max-height:3em;*/
 	}
+    .morceau.small{
+        min-height: 2em;
+    }
 	.morceau:hover  .button{
 		visibility: visible;
 	}
@@ -29,21 +32,24 @@
         color: #285e8e;
     }
 
+
+
 </style>
-<div class="morceau row" >
-	<div class="col-xs-1 ">
-		<span class="button glyphicon glyphicon-play-circle" ng-click="vm.play(morceau.track_id)"></span>
-		<span class="button glyphicon glyphicon-circle-arrow-down" ng-click="vm.enQueue(morceau.track_id)"></span>
+<div class="morceau row" ng-class=" (morceau.artist != null) ? '' : 'small'" >
+	<div ng-class=" (morceau.artist != null) ? 'col-xs-1' : 'col-xs-2'">
+		<span class="button glyphicon glyphicon-play-circle" ng-click="vm.play(morceau)"></span>
+		<span class="button glyphicon glyphicon-circle-arrow-down" ng-click="vm.enQueue(morceau)"></span>
 	</div>
-	<div class="detail col-xs-10 ">
+	<div class="detail " ng-class=" (morceau.artist != null) ? 'col-xs-10' : 'col-xs-9'">
 		<div class="row">
 			<div class="col-xs-9">
 				[[morceau.title]]
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-xs-12 artist-name">
+		<div class="row" ng-if="morceau.artist != null">
+
+			<div class="col-xs-12 artist-name" ng-click="vm.artistInfo(morceau)">
 				<span class="glyphicon glyphicon-user"></span>
 				&nbsp;[[morceau.artist.name]]
 			</div>

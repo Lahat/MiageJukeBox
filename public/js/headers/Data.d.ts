@@ -7,6 +7,10 @@ interface IArtist{
     info : string;
 }
 
+interface IJoindedArtist extends IArtist{
+    morceaux: Array<ITrack>;
+}
+
 interface ITrack{
     artist_id: number;
     track_id: number;
@@ -15,7 +19,7 @@ interface ITrack{
 }
 
 interface IJoinedTrack extends ITrack{
-    artist : IArtist;
+    artist : IJoindedArtist;
     position?: number;
 }
 

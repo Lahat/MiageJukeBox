@@ -90,6 +90,32 @@
 
 
 
+    <!-- Zone des modals -->
+
+
+    <div id="artist-modal" class="modal fade" ng-controller="ArtistModalController" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">
+                        [[vm.getArtist().name]]
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <img ng-src="[[vm.getArtist().image_url]]" alt="" style="float:left; max-width: 150px; padding-right:1em"/>
+                    [[vm.getArtist().info]]
+                    <hr/>
+                    <h4>Autre titres:</h4>
+                    <morceau ng-repeat="morceau in vm.getArtist().morceaux"></morceau>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 
 
 
@@ -116,6 +142,7 @@
 	<script type="text/javascript" src="public/js/controllers/MaBibliotheque.js"></script>
 	<script type="text/javascript" src="public/js/controllers/All.js"></script>
     <script type="text/javascript" src="public/js/controllers/PlayBar.js"></script>
+    <script type="text/javascript" src="public/js/controllers/ArtistModalController.js"></script>
 
 
 

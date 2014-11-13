@@ -16,6 +16,9 @@ class MaBibliothequeController {
     private model : IDataModel;
 
 
+    private artistModalId : string = "#artist-modal";
+
+
     //collections
 
     private playlists:Array<IPlaylist>;
@@ -57,13 +60,19 @@ class MaBibliothequeController {
     }
 
 
-    public play(track_id:number){
-        var track : IJoinedTrack = this.tracks[track_id];
+    public artistInfo(track: IJoinedTrack){
+        this.JukeBoxBridge.showArtistInfo(track.artist);
+        $(this.artistModalId).modal('show');
+    }
+
+
+    public play(track:IJoinedTrack){
+
         this.JukeBoxBridge.play(track);
     }
 
-    public enQueue(track_id:number){
-        var track : IJoinedTrack = this.tracks[track_id];
+    public enQueue(track:IJoinedTrack){
+
         this.JukeBoxBridge.enQueue(track);
     }
 

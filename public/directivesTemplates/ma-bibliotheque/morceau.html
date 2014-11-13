@@ -35,19 +35,19 @@
 
 
 </style>
-<div class="morceau row" ng-class=" (morceau.artist != null) ? '' : 'small'" >
-	<div ng-class=" (morceau.artist != null) ? 'col-xs-1' : 'col-xs-2'">
+<div class="morceau row" ng-class=" !morceau.isFinal ? '' : 'small'" >
+	<div ng-class=" !morceau.isFinal ? 'col-xs-1' : 'col-xs-2'">
 		<span class="button glyphicon glyphicon-play-circle" ng-click="vm.play(morceau)"></span>
 		<span class="button glyphicon glyphicon-circle-arrow-down" ng-click="vm.enQueue(morceau)"></span>
 	</div>
-	<div class="detail " ng-class=" (morceau.artist != null) ? 'col-xs-10' : 'col-xs-9'">
+	<div class="detail " ng-class=" !morceau.isFinal ? 'col-xs-10' : 'col-xs-9'">
 		<div class="row">
 			<div class="col-xs-9">
 				[[morceau.title]]
 			</div>
 		</div>
 		
-		<div class="row" ng-if="morceau.artist != null">
+		<div class="row" ng-if="!morceau.isFinal">
 
 			<div class="col-xs-12 artist-name" ng-click="vm.artistInfo(morceau)">
 				<span class="glyphicon glyphicon-user"></span>

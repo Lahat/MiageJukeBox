@@ -21,6 +21,7 @@ interface ITrack{
 interface IJoinedTrack extends ITrack{
     artist : IJoindedArtist;
     position?: number;
+    isFinal?:boolean;
 }
 
 interface IPlaylist{

@@ -19,7 +19,7 @@ var PlayBar = (function () {
                 _this.reIndexTracks();
                 _this.playTrack(track[0]);
             } else if (action === 1 /* QUEUED */) {
-                console.log("Queued: " + track[0].title);
+                console.log("Queued: " + track[track.length - 1].title);
                 _this.reIndexTracks();
             }
         });
@@ -65,7 +65,11 @@ var PlayBar = (function () {
         if (this.isPlaying()) {
             this.currentlyPlaying.pause();
         } else {
-            this.currentlyPlaying.play();
+            if (this.currentlyPlaying)
+                this.currentlyPlaying.play();
+            else if (this.currentPlaylist.length !== 0) {
+                this.playAlreadyQueuedTrack(this.currentPlaylist[0]);
+            }
         }
     };
 

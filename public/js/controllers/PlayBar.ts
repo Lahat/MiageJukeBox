@@ -31,7 +31,7 @@ class PlayBar {
                  this.playTrack(track[0]);
             }
             else if(action === IJukeBoxBridgeLastAction.QUEUED){
-                console.log("Queued: "+track[0].title);
+                console.log("Queued: "+track[track.length-1].title);
                 this.reIndexTracks();
             }
 
@@ -80,7 +80,11 @@ class PlayBar {
             this.currentlyPlaying.pause();
         }
         else{
-            this.currentlyPlaying.play();
+            if(this.currentlyPlaying)
+                this.currentlyPlaying.play();
+            else if(this.currentPlaylist.length !== 0){
+                this.playAlreadyQueuedTrack(this.currentPlaylist[0]);
+            }
         }
     }
 

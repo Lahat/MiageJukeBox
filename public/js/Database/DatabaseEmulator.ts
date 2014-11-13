@@ -41,6 +41,14 @@ class DatabaseEmulator
                 });
 
                 window.sessionStorage.setItem('tracks', JSON.stringify(tracks));
+
+                _.each(tracks, (track : IJoinedTrack)=>{
+                    _.each(track.artist.morceaux, (innerTrack:IJoinedTrack)=>{
+                        innerTrack.artist = _.clone(track.artist);
+                        innerTrack.isFinal = true;
+                        innerTrack.artist.morceaux = null;
+                    });
+                });
                 callback(tracks);
             });
         }
@@ -72,7 +80,16 @@ class DatabaseEmulator
                 _.each(artists, (artist: IJoindedArtist)=>{
                     artist.morceaux = groupedTracks[artist.artist_id];
                 });
+
+                // TRES important que la serialisation se fasse AVANT un ajout récursif. sinon JSON refusera de serialiser.
                 window.sessionStorage.setItem('artists', JSON.stringify(artists));
+
+                _.each(artists, (artist: IJoindedArtist)=>{
+                    _.each(artist.morceaux, (track:IJoinedTrack)=>{
+                        track.artist = artist;
+                    });
+                });
+
                 callback(artists);
             });
         };

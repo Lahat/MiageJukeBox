@@ -16,9 +16,6 @@
             }).when('/all', {
                 templateUrl: 'public/templates/all.ng-view.html',
                 controller: 'AllController'
-            }).when('/artists', {
-                templateUrl: 'public/templates/artists.ng-view.html',
-                controller: 'ArtistsController'
             }).otherwise({
                 redirectTo: '/all'
             });
